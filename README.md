@@ -56,26 +56,3 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 
 3. Aperte no endereço indicado (CTRL+Click) "https://pastebin.com/raw/gJdvmUHP", copie e cole no campo HTML
 4. Aperte no endereço indicado (CTRL+Click) "https://pastebin.com/raw/dPdSdDSZ", copie e cole no campo CSS
-
-## ⚙️ Como Rodar o Projeto Localmente
-
-Se você quiser clonar e rodar este projeto na sua máquina:
-
-```bash
-# 1. Clone o repositório
-git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
-
-# 2. Entre na pasta do projeto
-cd marathon-calculator
-
-# 3. Instale as dependências
-npm install
-
-# 4. (IMPORTANTE) A biblioteca 'react-csv' exige o 'prop-types'
-# Se ele não foi instalado automaticamente, instale-o:
-npm install prop-types
-
-# 5. Rode o servidor de desenvolvimento
-npm run dev
-
-# 6. Abra http://localhost:5173 (ou a porta indicada) no seu navegador.
