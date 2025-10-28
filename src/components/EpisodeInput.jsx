@@ -5,7 +5,7 @@ import Papa from "papaparse"; // Importa a biblioteca de CSV
 
 // Recebe as funções 'onManualAdd' e 'onCsvAdd' do App.jsx
 function EpisodeInput({ onManualAdd, onCsvAdd }) {
-  // Estados "internos" apenas para o formulário manual
+  // Estados "internos" (lógica de auto-incremento)
   const [series, setSeries] = useState("");
   const [season, setSeason] = useState(1);
   const [epNum, setEpNum] = useState(1);
@@ -13,30 +13,31 @@ function EpisodeInput({ onManualAdd, onCsvAdd }) {
 
   // Manipulador para o formulário manual
   const handleSubmit = (e) => {
-    e.preventDefault(); // Impede o recarregamento da página
-    if (!series || duration <= 0) {
-      alert("Preencha pelo menos o nome da série e uma duração válida.");
+    e.preventDefault();
+
+    const currentSeries = series.trim();
+    const currentSeason = parseInt(season, 10) || 1;
+    const currentEpNum = parseInt(epNum, 10) || 1;
+    const currentDuration = parseInt(duration, 10);
+
+    // Validação
+    if (!currentSeries || !currentDuration || currentDuration <= 0) {
+      alert(
+        "Preencha pelo menos o Nome da Série e uma Duração (em minutos) válida."
+      );
       return;
     }
 
-    // Pega os valores atuais (garantindo que são números)
-    const currentSeason = parseInt(season, 10);
-    const currentEpNum = parseInt(epNum, 10);
-    const currentDuration = parseInt(duration, 10);
-
     // Envia os dados atuais para o App.jsx
     onManualAdd({
-      series,
+      series: currentSeries,
       season: currentSeason,
       epNum: currentEpNum,
       duration: currentDuration,
     });
 
-    // Reseta os outros campos para o padrão
-    // setSeries(''); // <<--- Deixe esta linha COMENTADA ou APAGUE ELA
-    // setSeason(''); // <<--- Deixe esta linha COMENTADA ou APAGUE ELA
-    setEpNum(currentEpNum + 1); // Incrementa o número do episódio
-    // setDuration(); // <<--- Deixe esta linha COMENTADA ou APAGUE ELA
+    // --- Lógica de Auto-incremento ---
+    setEpNum(currentEpNum + 1); // ACRESCENTA +1 no episódio
   };
 
   // Manipulador para o upload do arquivo CSV
@@ -47,7 +48,6 @@ function EpisodeInput({ onManualAdd, onCsvAdd }) {
         header: true,
         skipEmptyLines: true,
         complete: (results) => {
-          // Apenas envia os dados brutos (results.data) para o App.jsx
           onCsvAdd(results.data);
         },
         error: (err) => {
@@ -62,33 +62,51 @@ function EpisodeInput({ onManualAdd, onCsvAdd }) {
       {/* --- Formulário Manual --- */}
       <form onSubmit={handleSubmit} className="manual-form">
         <h4>Adicionar Manualmente</h4>
-        <input
-          type="text"
-          placeholder="Nome da Série"
-          value={series}
-          onChange={(e) => setSeries(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Temporada"
-          value={season}
-          min="1"
-          onChange={(e) => setSeason(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Episódio"
-          value={epNum}
-          min="1"
-          onChange={(e) => setEpNum(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Duração (min)"
-          value={duration}
-          min="1"
-          onChange={(e) => setDuration(e.target.value)}
-        />
+
+        <div className="form-group">
+          <label htmlFor="series-input">Nome da Série:</label>
+          <input
+            type="text"
+            id="series-input"
+            placeholder="Ex: Agent X"
+            value={series}
+            onChange={(e) => setSeries(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="season-input">Temporada:</label>
+          <input
+            type="number"
+            id="season-input"
+            value={season}
+            min="1"
+            onChange={(e) => setSeason(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="epNum-input">Episódio:</label>
+          <input
+            type="number"
+            id="epNum-input"
+            value={epNum}
+            min="1"
+            onChange={(e) => setEpNum(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="duration-input">Duração (min):</label>
+          <input
+            type="number"
+            id="duration-input"
+            value={duration}
+            min="1"
+            onChange={(e) => setDuration(e.target.value)}
+          />
+        </div>
+
         <button type="submit">Adicionar Ep</button>
       </form>
 
@@ -100,6 +118,16 @@ function EpisodeInput({ onManualAdd, onCsvAdd }) {
           <strong>Serie, Temporada, Episodio, Duracao</strong>
         </p>
         <input type="file" accept=".csv" onChange={handleFileChange} />
+
+        {/* --- INÍCIO DA MUDANÇA --- */}
+        {/* Adiciona a imagem aqui. 
+            Mude "exemplo-csv.png" para o nome exato do seu arquivo. */}
+        <img
+          src="/exemplo-csv.png"
+          alt="Exemplo do formato CSV"
+          className="csv-example-image"
+        />
+        {/* --- FIM DA MUDANÇA --- */}
       </div>
     </div>
   );

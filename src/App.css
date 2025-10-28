@@ -89,10 +89,26 @@ body {
 .manual-form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   border-bottom: 1px solid #555;
   padding-bottom: 1.5rem;
 }
+
+/* --- ADICIONE ESTAS NOVAS REGRAS --- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem; /* Espaço pequeno entre o label e o input */
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ccc; /* Cor do texto do label */
+  margin-left: 0.1rem; /* Pequeno alinhamento */
+}
+/* --- FIM DAS NOVAS REGRAS --- */
+
 .csv-upload p {
   font-size: 0.85rem;
   color: #ccc;
@@ -231,4 +247,14 @@ header {
     /* Reduz o padding interno dos blocos */
     padding: 1rem;
   }
+}
+
+.csv-example-image {
+  /* Esta é a regra mais importante: */
+  max-width: 100%; /* Garante que a imagem nunca será mais larga que o contêiner */
+
+  height: auto; /* Mantém a proporção da imagem ao redimensionar a largura */
+  margin-top: 1rem; /* Dá um espaço entre o input e a imagem */
+  border-radius: 4px; /* Borda arredondada para combinar com o design */
+  display: block; /* Remove qualquer espaço extra que a tag <img> possa ter */
 }
