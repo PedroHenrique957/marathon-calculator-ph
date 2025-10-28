@@ -49,6 +49,7 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 **OBS**: No campo Duração (minutos):
 * **<60 minutos**: Normal
 * **>60 minutos**: Ex: 1h14min = 60 + 14 = 74
+* **Opcional**: Se você não quiser fazer de cabeça, acesse "https://codepen.io/pen" e copia o código que está dentro desse site "https://pastebin.com/raw/LD2AMTz0"
 
 ## ⚙️ Como Rodar o Projeto Localmente
 
