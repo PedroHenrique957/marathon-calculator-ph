@@ -224,7 +224,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>Versão 1.1.0</p>
+        <p>Versão 1.1.1</p>
         <p>&copy; 2025 Pedro Henrique. Todos os direitos reservados.</p>
       </footer>
     </div>
