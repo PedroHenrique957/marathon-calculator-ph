@@ -172,3 +172,51 @@ button, input[type='file'] {
 .app-footer p {
   margin: 0.25rem 0;
 }
+
+/* Remove o CSS do botão de Logout que não existe mais */
+header {
+  position: static; /* Volta ao normal */
+}
+.logout-button {
+  /* Pode apagar este bloco */
+}
+
+/* Adiciona estilos para o cabeçalho da tabela de saída */
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Para telas pequenas */
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.output-header h2 {
+  margin: 0;
+}
+
+/* Estilo do botão de exportar */
+.export-button {
+  background-color: #2f855a; /* Um verde bonito */
+  color: white;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+.export-button:hover {
+  background-color: #276749;
+}
+
+/* Estilo para o botão QUANDO ESTIVER DESABILITADO */
+.export-button-disabled {
+  background-color: #555; /* Cinza escuro */
+  color: #999; /* Cor do texto apagada */
+  cursor: not-allowed; /* Ícone de "não permitido" */
+}
+/* Faz o hover não ter efeito no botão desabilitado */
+.export-button-disabled:hover {
+  background-color: #555;
+}

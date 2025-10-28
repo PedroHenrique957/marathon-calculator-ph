@@ -1,9 +1,14 @@
 // /src/components/TimeRangeSelector.jsx
 
-import React from 'react';
+import React from "react";
 
 // Recebe os valores e as funções 'setter' do App.jsx
-function TimeRangeSelector({ startTime, endTime, onStartTimeChange, onEndTimeChange }) {
+function TimeRangeSelector({
+  startTime,
+  endTime,
+  onStartTimeChange,
+  onEndTimeChange,
+}) {
   return (
     <div className="time-range-selector">
       <label htmlFor="start-time">De:</label>

@@ -1,8 +1,8 @@
 // /src/components/ScheduleTable.jsx
 
-import React from 'react';
-import { format } from 'date-fns';
-import { ptBR } from 'date-fns/locale'; // <-- 1. IMPORTAR O IDIOMA PORTUGUÊS
+import React from "react";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale"; // <-- 1. IMPORTAR O IDIOMA PORTUGUÊS
 
 // Recebe o 'schedule' (cronograma) do App.jsx
 function ScheduleTable({ schedule }) {
@@ -27,16 +27,15 @@ function ScheduleTable({ schedule }) {
         {schedule.map((item) => (
           <tr key={item.marathonEp}>
             <td>{item.marathonEp}</td>
-            
+
             {/* --- MUDANÇA AQUI --- */}
             {/* 2. Adicione { locale: ptBR } às opções do 'format' */}
-            <td>
-              {format(item.day, 'dd/MM/yyyy (EEE)', { locale: ptBR })}
-            </td>
+            <td>{format(item.day, "dd/MM/yyyy (EEE)", { locale: ptBR })}</td>
             {/* --- FIM DA MUDANÇA --- */}
-            
+
             <td>
-              {format(item.startTime, 'HH:mm')} - {format(item.endTime, 'HH:mm')}
+              {format(item.startTime, "HH:mm")} -{" "}
+              {format(item.endTime, "HH:mm")}
             </td>
             <td>{item.series}</td>
             <td>{`S${item.season} E${item.epNum}`}</td>

@@ -25,7 +25,7 @@ const DAY_MAP = {
 // --- 1. MUDAR A ASSINATURA DA FUNÇÃO ---
 // Agora ela recebe 'startTime' (ex: "06:00") e 'endTime' (ex: "12:00")
 export function calculateSchedule(episodes, selectedDays, startTime, endTime) {
-  
+
   // --- 2. REMOVER CONSTANTES E PARSEAR OS HORÁRIOS ---
   // const TIME_BLOCK_START = 6; // REMOVIDO
   // const TIME_BLOCK_END = 12; // REMOVIDO
@@ -55,7 +55,7 @@ export function calculateSchedule(episodes, selectedDays, startTime, endTime) {
   // Define a hora para o fim (ex: 12:00)
   let blockEndTime = setSeconds(setMinutes(setHours(currentDay, endHour), endMinute), 0);
   // --- FIM DA MUDANÇA ---
-  
+
   let currentWatchTime = blockStartTime;
 
   // 4. Loop (Nenhuma mudança aqui)
@@ -85,7 +85,7 @@ export function calculateSchedule(episodes, selectedDays, startTime, endTime) {
 
       // --- 7. USAR OS NOVOS HORÁRIOS PARSEADOS AQUI TAMBÉM ---
       blockStartTime = setSeconds(setMinutes(setHours(currentDay, startHour), startMinute), 0);
-      blockEndTime = setSeconds(setMinutes(setHours(currentDay, endHour), endMinute), 0); 
+      blockEndTime = setSeconds(setMinutes(setHours(currentDay, endHour), endMinute), 0);
       currentWatchTime = blockStartTime;
       // --- FIM DA MUDANÇA ---
 

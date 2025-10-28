@@ -1,21 +1,21 @@
 // /src/components/EpisodeInput.jsx
 
-import React, { useState } from 'react';
-import Papa from 'papaparse'; // Importa a biblioteca de CSV
+import React, { useState } from "react";
+import Papa from "papaparse"; // Importa a biblioteca de CSV
 
 // Recebe as funções 'onManualAdd' e 'onCsvAdd' do App.jsx
 function EpisodeInput({ onManualAdd, onCsvAdd }) {
   // Estados "internos" apenas para o formulário manual
-  const [series, setSeries] = useState('');
+  const [series, setSeries] = useState("");
   const [season, setSeason] = useState(1);
   const [epNum, setEpNum] = useState(1);
   const [duration, setDuration] = useState(45);
 
   // Manipulador para o formulário manual
-   const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault(); // Impede o recarregamento da página
     if (!series || duration <= 0) {
-      alert('Preencha pelo menos o nome da série e uma duração válida.');
+      alert("Preencha pelo menos o nome da série e uma duração válida.");
       return;
     }
 
@@ -31,12 +31,12 @@ function EpisodeInput({ onManualAdd, onCsvAdd }) {
       epNum: currentEpNum,
       duration: currentDuration,
     });
-     
+
     // Reseta os outros campos para o padrão
-     // setSeries(''); // <<--- Deixe esta linha COMENTADA ou APAGUE ELA
-     // setSeason(''); // <<--- Deixe esta linha COMENTADA ou APAGUE ELA
+    // setSeries(''); // <<--- Deixe esta linha COMENTADA ou APAGUE ELA
+    // setSeason(''); // <<--- Deixe esta linha COMENTADA ou APAGUE ELA
     setEpNum(currentEpNum + 1); // Incrementa o número do episódio
-     // setDuration(); // <<--- Deixe esta linha COMENTADA ou APAGUE ELA
+    // setDuration(); // <<--- Deixe esta linha COMENTADA ou APAGUE ELA
   };
 
   // Manipulador para o upload do arquivo CSV
@@ -48,10 +48,10 @@ function EpisodeInput({ onManualAdd, onCsvAdd }) {
         skipEmptyLines: true,
         complete: (results) => {
           // Apenas envia os dados brutos (results.data) para o App.jsx
-          onCsvAdd(results.data); 
+          onCsvAdd(results.data);
         },
         error: (err) => {
-          alert('Erro ao ler o CSV:', err.message);
+          alert("Erro ao ler o CSV:", err.message);
         },
       });
     }
@@ -96,13 +96,10 @@ function EpisodeInput({ onManualAdd, onCsvAdd }) {
       <div className="csv-upload">
         <h4>Importar via CSV</h4>
         <p>
-          O CSV deve ter as colunas: <strong>Serie, Temporada, Episodio, Duracao</strong>
+          O CSV deve ter as colunas:{" "}
+          <strong>Serie, Temporada, Episodio, Duracao</strong>
         </p>
-        <input
-          type="file"
-          accept=".csv"
-          onChange={handleFileChange}
-        />
+        <input type="file" accept=".csv" onChange={handleFileChange} />
       </div>
     </div>
   );
