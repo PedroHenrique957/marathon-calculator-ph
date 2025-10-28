@@ -68,7 +68,7 @@ function EpisodeInput({ onManualAdd, onCsvAdd, episodeCount }) {
           <input
             type="text"
             id="series-input"
-            placeholder="Ex: Agent X"
+            placeholder="Ex: Breaking Bad"
             value={series}
             onChange={(e) => setSeries(e.target.value)}
           />
