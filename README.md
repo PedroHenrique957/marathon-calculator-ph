@@ -4,7 +4,7 @@ Este é um aplicativo web de página única (SPA) criado em **React + Vite** par
 
 O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dias da semana e o intervalo de horário desejado. O aplicativo exibe instantaneamente uma tabela com o cronograma completo, que pode ser exportado para um arquivo `.csv`.
 
-## 🚀 Demo ao Vivo
+## 🚀 Link do site
 
 **[https://marathon-calculator-ph.vercel.app/]** *
 
