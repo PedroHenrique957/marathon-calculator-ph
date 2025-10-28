@@ -40,7 +40,7 @@ body {
 
 .app-container main {
   display: grid;
-  grid-template-columns: 350px 1fr; /* Coluna 1 (inputs) | Coluna 2 (tabela) */
+  grid-template-columns: 1fr; /* Padrão: UMA coluna (Mobile First) */
   gap: 2rem;
 }
 
@@ -147,10 +147,10 @@ input[type="file"] {
   cursor: pointer;
 }
 
-/* Responsividade (Telas menores) */
-@media (max-width: 900px) {
+/* Responsividade (Telas maiores - Desktop) */
+@media (min-width: 901px) {
   .app-container main {
-    grid-template-columns: 1fr; /* Uma coluna só */
+    grid-template-columns: 350px 1fr; /* Duas colunas (Inputs | Tabela) */
   }
 }
 
