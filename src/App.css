@@ -1,35 +1,41 @@
 /* /src/App.css */
 
-/* Reset básico e Fonte */
+/* ==========================================================================
+   Global Styles & Base Setup
+   ========================================================================== */
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #242424; /* Fundo geral para o tema escuro */
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  display: flex; /* Centraliza o #root verticalmente */
+  place-items: center; /* Centraliza o #root horizontalmente */
+  min-width: 320px; /* Largura mínima para evitar quebras */
   min-height: 100vh;
 }
 
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 1280px; /* Largura máxima da aplicação */
+  margin: 0 auto; /* Centraliza o container */
+  padding: 2rem; /* Espaçamento interno geral */
   width: 100%;
 }
 
-/* Container Principal */
+/* ==========================================================================
+   Layout Principal da Aplicação
+   ========================================================================== */
+
 .app-container {
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  flex-direction: column; /* Organiza header, main, footer verticalmente */
+  gap: 2rem; /* Espaço entre header, main, footer */
 }
 
 .app-container header {
@@ -38,32 +44,39 @@ body {
   padding-bottom: 1rem;
 }
 
+/* Layout do 'main': 1 coluna no mobile (default), 2 colunas no desktop */
 .app-container main {
   display: grid;
   grid-template-columns: 1fr; /* Padrão: UMA coluna (Mobile First) */
-  gap: 2rem;
+  gap: 2rem; /* Espaço entre a coluna de inputs e a de output */
 }
 
+/* Coluna da Esquerda (Inputs) */
 .inputs-section {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.5rem; /* Espaço entre os elementos internos (Dias, Horário, Séries) */
   background-color: #333;
   padding: 1.5rem;
   border-radius: 8px;
 }
 
+/* Coluna da Direita (Resultados) */
 .output-section {
   background-color: #333;
   padding: 1.5rem;
   border-radius: 8px;
-  overflow-x: auto; /* Para a tabela rolar em telas pequenas */
+  overflow-x: auto; /* Permite rolar a tabela horizontalmente em telas pequenas */
 }
 
-/* Seletor de Dias */
+/* ==========================================================================
+   Componentes Específicos
+   ========================================================================== */
+
+/* 1. Seletor de Dias (DaySelector.jsx) */
 .day-selector {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Quebra linha se não couber */
   gap: 0.5rem;
 }
 .day-label {
@@ -74,48 +87,82 @@ body {
   padding: 0.5rem 0.8rem;
   border-radius: 4px;
   cursor: pointer;
-  user-select: none;
+  user-select: none; /* Impede seleção de texto no label */
 }
 .day-label input {
   cursor: pointer;
 }
 
-/* Input de Episódios */
+/* 2. Seletor de Horário (TimeRangeSelector.jsx) */
+.time-range-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #444;
+  padding: 0.8rem;
+  border-radius: 4px;
+}
+.time-range-selector label {
+  font-weight: 500;
+  margin: 0; /* Remove margem padrão */
+}
+.time-range-selector input[type="time"] {
+  background-color: #242424;
+  border: 1px solid #555;
+  color: white;
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+}
+
+/* 3. Input de Episódios (EpisodeInput.jsx) */
 .episode-input-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.5rem; /* Espaço entre Manual e CSV */
 }
+
+/* Formulário Manual */
 .manual-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1rem; /* Espaço entre os grupos de label/input e botão */
   border-bottom: 1px solid #555;
   padding-bottom: 1.5rem;
 }
-
-/* --- ADICIONE ESTAS NOVAS REGRAS --- */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem; /* Espaço pequeno entre o label e o input */
+  gap: 0.25rem; /* Espaço entre label e input */
 }
-
 .form-group label {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #ccc; /* Cor do texto do label */
-  margin-left: 0.1rem; /* Pequeno alinhamento */
+  color: #ccc;
+  margin-left: 0.1rem;
 }
-/* --- FIM DAS NOVAS REGRAS --- */
+.episode-counter {
+  text-align: center;
+  margin: 0;
+  padding-top: 0.5rem;
+  color: #ccc;
+  font-size: 1.1rem; /* Texto maior */
+}
 
+/* Upload CSV */
 .csv-upload p {
   font-size: 0.85rem;
   color: #ccc;
   margin-top: 0;
 }
+.csv-example-image {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: 4px;
+  display: block;
+}
 
-/* Tabela */
+/* 4. Tabela de Resultados (ScheduleTable.jsx) */
 .schedule-table {
   width: 100%;
   border-collapse: collapse;
@@ -125,6 +172,7 @@ body {
   border: 1px solid #555;
   padding: 0.75rem;
   text-align: left;
+  white-space: nowrap; /* Impede que o texto quebre linha */
 }
 .schedule-table th {
   background-color: #444;
@@ -133,7 +181,88 @@ body {
   background-color: #3a3a3a;
 }
 
-/* Elementos de Formulário */
+/* 5. Cabeçalho da Seção de Resultados (Output Header) */
+.output-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Quebra linha em telas pequenas */
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.output-header h2 {
+  margin: 0;
+}
+
+/* Botão de Exportar CSV */
+.export-button {
+  background-color: #2f855a; /* Verde */
+  color: white;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+.export-button:hover {
+  background-color: #276749;
+}
+.export-button-disabled {
+  background-color: #555; /* Cinza */
+  color: #999;
+  cursor: not-allowed;
+}
+.export-button-disabled:hover {
+  background-color: #555;
+}
+
+/* 6. Controles de Paginação (PaginationControls.jsx) */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #555;
+}
+.pagination-controls button,
+.pagination-controls select {
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background-color: #444;
+  color: #eee;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #555;
+}
+.pagination-controls button:disabled {
+  background-color: #333;
+  color: #777;
+  cursor: not-allowed;
+  border-color: #444;
+}
+.pagination-controls select {
+  background-color: #242424;
+  min-width: 120px;
+  text-align: center;
+}
+.page-info {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   Elementos Gerais de Formulário
+   ========================================================================== */
+
 input[type="text"],
 input[type="number"] {
   padding: 0.6rem;
@@ -142,41 +271,15 @@ input[type="number"] {
   background-color: #242424;
   color: white;
 }
-button,
+button, /* Estilo base para botões (exceto paginação e ghost) */
 input[type="file"] {
   cursor: pointer;
 }
 
-/* Responsividade (Telas maiores - Desktop) */
-@media (min-width: 901px) {
-  .app-container main {
-    grid-template-columns: 350px 1fr; /* Duas colunas (Inputs | Tabela) */
-  }
-}
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
 
-/* Seletor de Horário */
-.time-range-selector {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: #444;
-  padding: 0.8rem;
-  border-radius: 4px;
-}
-
-.time-range-selector label {
-  font-weight: 500;
-}
-
-.time-range-selector input[type="time"] {
-  background-color: #242424;
-  border: 1px solid #555;
-  color: white;
-  border-radius: 4px;
-  padding: 0.3rem 0.5rem;
-}
-
-/* Rodapé */
 .app-footer {
   border-top: 1px solid #555;
   padding-top: 1.5rem;
@@ -185,87 +288,29 @@ input[type="file"] {
   font-size: 0.9rem;
   color: #aaa;
 }
-
 .app-footer p {
   margin: 0.25rem 0;
 }
 
-/* Limpeza do CSS de Login (que foi removido) */
-header {
-  position: static; /* Volta ao normal */
+/* ==========================================================================
+   Responsividade
+   ========================================================================== */
+
+/* Telas Maiores (Desktop) - Muda para 2 colunas */
+@media (min-width: 901px) {
+  .app-container main {
+    grid-template-columns: 350px 1fr; /* Duas colunas (Inputs | Tabela) */
+  }
 }
 
-/* Cabeçalho da Tabela de Saída */
-.output-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap; /* Para telas pequenas */
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.output-header h2 {
-  margin: 0;
-}
-
-/* Estilo do botão de exportar */
-.export-button {
-  background-color: #2f855a; /* Um verde bonito */
-  color: white;
-  padding: 0.6rem 1rem;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
-}
-.export-button:hover {
-  background-color: #276749;
-}
-
-/* Estilo para o botão QUANDO ESTIVER DESABILITADO */
-.export-button-disabled {
-  background-color: #555; /* Cinza escuro */
-  color: #999; /* Cor do texto apagada */
-  cursor: not-allowed; /* Ícone de "não permitido" */
-}
-/* Faz o hover não ter efeito no botão desabilitado */
-.export-button-disabled:hover {
-  background-color: #555;
-}
-
-/* Polimento final para celulares pequenos (menos de 480px) */
+/* Telas Pequenas (Celulares) - Reduz espaçamentos */
 @media (max-width: 480px) {
   #root {
-    /* Reduz o padding geral de 2rem para 1rem */
-    padding: 1rem;
+    padding: 1rem; /* Reduz padding geral */
   }
 
   .inputs-section,
   .output-section {
-    /* Reduz o padding interno dos blocos */
-    padding: 1rem;
+    padding: 1rem; /* Reduz padding interno dos blocos */
   }
-}
-
-.csv-example-image {
-  /* Esta é a regra mais importante: */
-  max-width: 100%; /* Garante que a imagem nunca será mais larga que o contêiner */
-
-  height: auto; /* Mantém a proporção da imagem ao redimensionar a largura */
-  margin-top: 1rem; /* Dá um espaço entre o input e a imagem */
-  border-radius: 4px; /* Borda arredondada para combinar com o design */
-  display: block; /* Remove qualquer espaço extra que a tag <img> possa ter */
-}
-
-/* /src/App.css (Adicionar ao final) */
-
-.episode-counter {
-  text-align: center;
-  /* O 'gap: 1rem' do .manual-form já dará o espaço */
-  margin: 0; /* Remove a margem padrão do <p> */
-  padding-top: 0.5rem; /* Adiciona um espaço acima, se o gap não for suficiente */
-  color: #ccc;
-  font-size: 1.1rem; /* <--- Texto maior */
 }
