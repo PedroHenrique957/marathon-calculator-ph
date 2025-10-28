@@ -59,8 +59,6 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 
 Contudo, deve ficar assim:
 
-## 📷 Visualização
-
 | Imagem 1 | Imagem 2 |
 | :------: | :------: | 
 | <img src="./public/screenshot3.png" alt="Descrição da Imagem 3" width="300"> | <img src="./public/screenshot4.png" alt="Descrição da Imagem 4" width="300"> |
