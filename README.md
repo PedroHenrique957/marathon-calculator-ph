@@ -50,8 +50,12 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 * **>60 minutos**: Ex: 2h17min = 2 * 60 + 17 = 137 minutos
 * **Opcional**: Se você não quiser fazer de cabeça ou usar a calculadora
 1. Acesse "https://codepen.io/pen"
-2. Aperte no endereço indicado usando CTRL+Click "https://pastebin.com/raw/gJdvmUHP", copie e cole no campo HTML
-3. Aperte no endereço indicado usando CTRL+Click "https://pastebin.com/raw/dPdSdDSZ", copie e cole no campo CSS
+2. Certifique de que esse ícone esteja selecionado:
+
+![Visualização da Calculadora Horas pra Minutos](./public/screenshot2.png)
+
+3. Aperte no endereço indicado usando CTRL+Click "https://pastebin.com/raw/gJdvmUHP", copie e cole no campo HTML
+4. Aperte no endereço indicado usando CTRL+Click "https://pastebin.com/raw/dPdSdDSZ", copie e cole no campo CSS
 
 ## ⚙️ Como Rodar o Projeto Localmente
 
