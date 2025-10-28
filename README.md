@@ -22,8 +22,7 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 
 ## 📷 Visualização
 
-*(Recomendado: Tire um print da sua aplicação e coloque aqui)*
-`![Screenshot da Calculadora de Maratona](caminho/para/seu/screenshot.png)`
+![Visualização da Calculadora de Maratona](./public/screenshot1.png)
 
 ## 🛠️ Tecnologias Utilizadas
 
