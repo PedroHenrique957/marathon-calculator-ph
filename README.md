@@ -59,8 +59,11 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 
 Contudo, deve ficar assim:
 
-<div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 10px;">
-  <img src="./public/screenshot3.png" alt="Descrição da Imagem 1" width="50%" />
-  <img src="./public/screenshot4.png" alt="Descrição da Imagem 2" width="50%" />
-  <img src="./public/screenshot5.png" alt="Descrição da Imagem 3" width="50%" />
-</div>
+## 📷 Visualização
+
+| Imagem 1 | Imagem 2 |
+| :------: | :------: | 
+| <img src="./public/screenshot3.png" alt="Descrição da Imagem 3" width="300"> | <img src="./public/screenshot4.png" alt="Descrição da Imagem 4" width="300"> |
+| Imagem 3 |
+| <img src="./public/screenshot5.png" alt="Descrição da Imagem 5" width="300"> | |
+| | |
