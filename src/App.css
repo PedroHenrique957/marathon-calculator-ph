@@ -258,3 +258,14 @@ header {
   border-radius: 4px; /* Borda arredondada para combinar com o design */
   display: block; /* Remove qualquer espaço extra que a tag <img> possa ter */
 }
+
+/* /src/App.css (Adicionar ao final) */
+
+.episode-counter {
+  text-align: center;
+  /* O 'gap: 1rem' do .manual-form já dará o espaço */
+  margin: 0; /* Remove a margem padrão do <p> */
+  padding-top: 0.5rem; /* Adiciona um espaço acima, se o gap não for suficiente */
+  color: #ccc;
+  font-size: 1.1rem; /* <--- Texto maior */
+}

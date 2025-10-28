@@ -185,15 +185,13 @@ function App() {
             onEndTimeChange={setEndTime}
           />
           <h2>2. O que assistir?</h2>
+          {/* <-- MUDANÇA 1: Passa a contagem */}
           <EpisodeInput
             onManualAdd={addManualEpisode}
             onCsvAdd={addCsvEpisodes}
+            episodeCount={episodes.length}
           />
-          {episodes.length > 0 && (
-            <p>
-              <strong>{episodes.length}</strong> episódios na fila.
-            </p>
-          )}
+          {/* MUDANÇA 2: O <p> foi removido daqui */}
         </div>
 
         <div className="output-section">
