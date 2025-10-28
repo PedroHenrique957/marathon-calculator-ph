@@ -6,7 +6,7 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 
 ## 🚀 Demo ao Vivo
 
-**[Link para o projeto publicado no Vercel]** *(Substitua este texto pelo seu link do Vercel quando estiver pronto)*
+**[https://marathon-calculator-ph.vercel.app/]** *
 
 ## ✨ Funcionalidades Principais
 
