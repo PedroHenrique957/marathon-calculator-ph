@@ -52,7 +52,15 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 1. Acesse "https://codepen.io/pen"
 2. Certifique de que esse ícone esteja selecionado:
 
-![Visualização da Calculadora Horas pra Minutos](./public/screenshot2.png)
+![Visualização do CodePen](./public/screenshot2.png)
 
 3. Aperte no endereço indicado (CTRL+Click) "https://pastebin.com/raw/gJdvmUHP", copie e cole no campo HTML
 4. Aperte no endereço indicado (CTRL+Click) "https://pastebin.com/raw/dPdSdDSZ", copie e cole no campo CSS
+
+Contudo, deve ficar assim:
+
+<div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 10px;">
+  <img src="./public/screenshot3.png" alt="Descrição da Imagem 1" width="30%" />
+  <img src="./public/screenshot4.png" alt="Descrição da Imagem 2" width="30%" />
+  <img src="./public/screenshot5.png" alt="Descrição da Imagem 3" width="30%" />
+</div>
