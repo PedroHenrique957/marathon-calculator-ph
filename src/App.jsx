@@ -44,25 +44,17 @@ function App() {
 
   // Efeito 1: CALCULAR o cronograma
   useEffect(() => {
-    // 1. Ordena os episódios
-    const sortedEpisodes = [...episodes].sort((a, b) => {
-      if (a.series < b.series) return -1;
-      if (a.series > b.series) return 1;
-      if (a.season < b.season) return -1;
-      if (a.season > b.season) return 1;
-      if (a.epNum < b.epNum) return -1;
-      if (a.epNum > b.epNum) return 1;
-      return 0;
-    });
-
+    // 1. Lógica de ordenação (sort) REMOVIDA
+    
     // 2. Chama a calculadora
     const calculated = calculateSchedule(
-      sortedEpisodes,
+      episodes, // <-- MUDANÇA: Passa o array 'episodes' original
       selectedDays,
       startTime,
       endTime
     );
     setSchedule(calculated);
+    
   }, [episodes, selectedDays, startTime, endTime]); // Dependências de cálculo
 
   // Efeito 2: PREPARAR dados para exportação CSV
