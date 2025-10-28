@@ -50,8 +50,8 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 * **>60 minutos**: Ex: 2h17min = 2 * 60 + 17 = 137 minutos
 * **Opcional**: Se você não quiser fazer de cabeça ou usar a calculadora
 1. Acesse "https://codepen.io/pen"
-2. Copia o código "https://pastebin.com/raw/gJdvmUHP" e cole-o no campo HTML
-3. Copia o código "https://pastebin.com/raw/dPdSdDSZ" e cole-o no campo CSS
+2. Aperte no endereço indicado "https://pastebin.com/raw/gJdvmUHP", copie e cole no campo HTML
+3. Aperte no endereço indicado "https://pastebin.com/raw/dPdSdDSZ", copie e cole no campo CSS
 
 ## ⚙️ Como Rodar o Projeto Localmente
 
