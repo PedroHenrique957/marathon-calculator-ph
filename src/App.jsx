@@ -1,4 +1,4 @@
-// /src/App.jsx (Versão 1.2.0 com Paginação)
+// /src/App.jsx
 
 import { useState, useEffect } from "react";
 import { CSVLink } from "react-csv"; // Para exportar
@@ -8,7 +8,6 @@ import { ptBR } from "date-fns/locale"; // Para português
 // Importa todos os seus componentes
 import DaySelector from "./components/DaySelector";
 import EpisodeInput from "./components/EpisodeInput";
-import PaginationControls from "./components/PaginationControls"; // <- Importa componente de paginação
 import ScheduleTable from "./components/ScheduleTable";
 import TimeRangeSelector from "./components/TimeRangeSelector";
 import { calculateSchedule } from "./logic/calculator";
@@ -23,51 +22,52 @@ const defaultSelectedDays = [
   "Friday",
 ];
 
-// --- Definir itens por página ---
-const ITEMS_PER_PAGE = 20;
-
 function App() {
   // === ESTADOS ===
-  const [episodes, setEpisodes] = useState([]);
-  const [selectedDays, setSelectedDays] = useState(defaultSelectedDays);
-  const [startTime, setStartTime] = useState("06:00");
-  const [endTime, setEndTime] = useState("12:00");
-  const [schedule, setSchedule] = useState([]); // A lista COMPLETA
+  // O app sempre começa com estes valores padrão:
+
+  const [episodes, setEpisodes] = useState([]); // Começa vazio
+
+  const [selectedDays, setSelectedDays] = useState(defaultSelectedDays); // Começa com Seg-Sex
+
+  const [startTime, setStartTime] = useState("06:00"); // Começa às 06:00
+
+  const [endTime, setEndTime] = useState("12:00"); // Começa às 12:00
+
+  // 'schedule' (o resultado) não precisa ser salvo, é sempre calculado
+  const [schedule, setSchedule] = useState([]);
+
+  // Estado para os dados formatados para exportação
   const [exportData, setExportData] = useState([]);
-
-  // --- Novo estado para a página atual ---
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // === DADOS DERIVADOS (Cálculos de Paginação) ===
-  const totalPages = Math.ceil(schedule.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  // Cria a "fatia" dos dados a serem exibidos na tabela
-  const displayedSchedule = schedule.slice(startIndex, endIndex);
 
   // === EFEITOS ===
 
   // Efeito 1: CALCULAR o cronograma
   useEffect(() => {
-    // 1. Lógica de ordenação (sort) REMOVIDA (como na v1.1.1)
+    // 1. Ordena os episódios
+    const sortedEpisodes = [...episodes].sort((a, b) => {
+      if (a.series < b.series) return -1;
+      if (a.series > b.series) return 1;
+      if (a.season < b.season) return -1;
+      if (a.season > b.season) return 1;
+      if (a.epNum < b.epNum) return -1;
+      if (a.epNum > b.epNum) return 1;
+      return 0;
+    });
 
     // 2. Chama a calculadora
     const calculated = calculateSchedule(
-      episodes, // Usa o array 'episodes' original
+      sortedEpisodes,
       selectedDays,
       startTime,
       endTime
     );
     setSchedule(calculated);
-
-    // --- Resetar para a página 1 sempre que os dados mudam ---
-    setCurrentPage(1);
-
   }, [episodes, selectedDays, startTime, endTime]); // Dependências de cálculo
 
   // Efeito 2: PREPARAR dados para exportação CSV
   useEffect(() => {
-    // Transforma o array 'schedule' COMPLETO em um formato simples para CSV
+    // Transforma o array 'schedule' (com objetos Date) em um formato simples para CSV
     const formattedData = schedule.map((item) => ({
       marathonEp: item.marathonEp,
       date: format(item.day, "dd/MM/yyyy (EEE)", { locale: ptBR }),
@@ -80,7 +80,7 @@ function App() {
       duration: item.duration,
     }));
     setExportData(formattedData);
-  }, [schedule]); // Roda sempre que o 'schedule' COMPLETO mudar
+  }, [schedule]); // Roda sempre que o 'schedule' (resultado) mudar
 
   // === FUNÇÕES (Handlers) ===
 
@@ -101,7 +101,7 @@ function App() {
   };
 
   const addCsvEpisodes = (csvData) => {
-    // (O código completo de diagnóstico do CSV - sem alterações)
+    // (O código completo de diagnóstico do CSV)
     if (!Array.isArray(csvData) || csvData.length === 0) {
       alert(
         "Erro na importação: O arquivo CSV está vazio ou em um formato inválido."
@@ -154,20 +154,7 @@ function App() {
     setEpisodes(validEpisodes);
   };
 
-  // --- Novas funções para controlar a paginação ---
-  const handlePageChange = (pageNumber) => {
-    // Garante que o número da página esteja dentro dos limites
-    if (pageNumber >= 1 && pageNumber <= totalPages) {
-      setCurrentPage(pageNumber);
-    }
-  };
-  const goToFirstPage = () => setCurrentPage(1);
-  const goToLastPage = () => setCurrentPage(totalPages);
-  const goToPreviousPage = () => setCurrentPage(prev => Math.max(1, prev - 1));
-  const goToNextPage = () => setCurrentPage(prev => Math.min(totalPages, prev + 1));
-
-
-  // Cabeçalhos para o arquivo CSV de exportação (sem alterações)
+  // Cabeçalhos para o arquivo CSV de exportação
   const exportHeaders = [
     { label: "Ep. Maratona", key: "marathonEp" },
     { label: "Data", key: "date" },
@@ -198,11 +185,13 @@ function App() {
             onEndTimeChange={setEndTime}
           />
           <h2>2. O que assistir?</h2>
+          {/* <-- MUDANÇA 1: Passa a contagem */}
           <EpisodeInput
             onManualAdd={addManualEpisode}
             onCsvAdd={addCsvEpisodes}
             episodeCount={episodes.length}
           />
+          {/* MUDANÇA 2: O <p> foi removido daqui */}
         </div>
 
         <div className="output-section">
@@ -214,7 +203,7 @@ function App() {
             {/* Lógica do botão fixo/desabilitado */}
             {schedule.length > 0 ? (
               <CSVLink
-                data={exportData} // Exporta TODOS os dados, não apenas a página atual
+                data={exportData}
                 headers={exportHeaders}
                 filename={"minha_maratona.csv"}
                 className="export-button"
@@ -230,29 +219,12 @@ function App() {
               </span>
             )}
           </div>
-
-          {/* --- Passa a fatia 'displayedSchedule' para a tabela --- */}
-          <ScheduleTable schedule={displayedSchedule} />
-
-          {/* --- Adiciona os controles de paginação (se houver mais de 1 página) --- */}
-          {totalPages > 1 && (
-            <PaginationControls
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange} // Para o select
-              onGoToFirst={goToFirstPage}
-              onGoToLast={goToLastPage}
-              onGoToPrevious={goToPreviousPage}
-              onGoToNext={goToNextPage}
-            />
-          )}
-
+          <ScheduleTable schedule={schedule} />
         </div>
       </main>
 
       <footer className="app-footer">
-        {/* --- Atualizar a Versão --- */}
-        <p>Versão 1.2.0</p>
+        <p>Versão 1.1.0</p>
         <p>&copy; 2025 Pedro Henrique. Todos os direitos reservados.</p>
       </footer>
     </div>
