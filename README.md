@@ -54,8 +54,8 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
 
 ![Visualização da Calculadora Horas pra Minutos](./public/screenshot2.png)
 
-3. Aperte no endereço indicado usando CTRL+Click "https://pastebin.com/raw/gJdvmUHP", copie e cole no campo HTML
-4. Aperte no endereço indicado usando CTRL+Click "https://pastebin.com/raw/dPdSdDSZ", copie e cole no campo CSS
+3. Aperte no endereço indicado (CTRL+Click) "https://pastebin.com/raw/gJdvmUHP", copie e cole no campo HTML
+4. Aperte no endereço indicado (CTRL+Click) "https://pastebin.com/raw/dPdSdDSZ", copie e cole no campo CSS
 
 ## ⚙️ Como Rodar o Projeto Localmente
 
