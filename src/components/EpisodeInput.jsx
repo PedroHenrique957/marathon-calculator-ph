@@ -94,7 +94,7 @@ function EpisodeInput({ onManualAdd, onCsvAdd, episodeCount }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="duration-input">Duração (min):</label>
+          <label htmlFor="duration-input">Duração (minutos):</label>
           <input
             type="number"
             id="duration-input"

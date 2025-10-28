@@ -46,6 +46,10 @@ O usuário pode definir uma lista de episódios (manualmente ou via CSV), os dia
     ```
 4.  **Visualize e Exporte:** A tabela na seção "3. Seu Cronograma" será atualizada automaticamente. Quando estiver satisfeito, clique no botão "Exportar Cronograma (CSV)".
 
+**OBS**: No campo Duração (minutos):
+* **<60 minutos**: Normal
+* **>60 minutos**: Ex: 1h14min = 60 + 14 = 74
+
 ## ⚙️ Como Rodar o Projeto Localmente
 
 Se você quiser clonar e rodar este projeto na sua máquina:
